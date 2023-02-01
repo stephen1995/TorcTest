@@ -61,7 +61,7 @@ describe('Computer database test suite', () => {
 
   })
 
-  it('Filter computer list by "IBM" and resturn list of computer names of the last page', () => {
+  it('Filter computer list by "IBM" and return list of computer names of the last page', () => {
 
     let brand = devicesData.listBrand
     cy.get('#searchbox').type(brand)
