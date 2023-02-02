@@ -67,20 +67,38 @@ describe('Computer database test suite', () => {
     cy.get('#searchbox').type(brand)
     cy.get('#searchsubmit').click()
 
-    recurse(
-      () => cy.contains('Next'),
-      ($button) => $button.hasClass('disabled') || $button.parent().should('have.class', 'disabled') || $button.length == 0 ||
-        $button.should('not.be.enabled') || $button.click().should('not.be.invoked') || $button.prop('disabled').to.be.true,
-      {
-        log: true,
-        delay: 500,
-        limit: 10,
-        timeout: 20000,
-        post() {
-          cy.contains('Next').click()
+
+    cy.get('li.current > a').invoke('text').then(($element) => {
+
+      //We are getting the numbers in results
+      let numbers = $element.match(/\d+/g)
+
+      //We get the last element and divide it / 10 so we know how many times we have to click on Next()
+      let howManyClicks = ~~(numbers[2] / 10)
+
+      let k = 0
+      recurse(
+        () => cy.contains('Next'),
+        ($button) => (k === howManyClicks),
+        {
+          log: false,
+          delay: 500,
+          limit: 10,
+          timeout: 20000,
+          post() {
+            cy.contains('Next').click()
+            k += 1
+          },
         },
-      },
-    )
+      )
+    })
+
+    cy.get('tr td:nth-child(1)').each(($element) => {
+
+      cy.log($element.text())
+    })
+
+
   })
 
   it('Add new computer', () => {
