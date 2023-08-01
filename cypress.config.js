@@ -4,7 +4,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: "https://duckduckgo.com",
   },
-  defaultCommandTimeout: 10000,
+  defaultCommandTimeout: 4000,
   chromeWebSecurity: false
 
 })
