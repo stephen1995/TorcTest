@@ -1,5 +1,5 @@
 {
-  "name": "csc",
+  "name": "Cypress",
   "version": "1.0.0",
   "description": "QA Automation Assessment",
   "main": "index.js",
@@ -8,10 +8,7 @@
   },
   "author": "Stephen Pozo",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^12.5.0"
-  },
   "devDependencies": {
-    "cypress-recurse": "^1.27.0"
+    "cypress": "^12.17.2"
   }
 }
